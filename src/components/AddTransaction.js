@@ -11,6 +11,13 @@ export const AddTransaction = () => {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    if(Number(amount)===0){
+      alert('Please Enter Correct Value');
+      amountRef.current.value = "";
+      textRef.current.value = "";
+      return false;
+    }
+
     const newTransaction = {
       id: Math.floor(Math.random() * 100000000),
       text,
@@ -44,7 +51,6 @@ export const AddTransaction = () => {
           </label>
           <motion.input
             whileHover={{ scale: 1.2 }}
-            
             type="number"
             ref={amountRef}
             required
@@ -53,8 +59,12 @@ export const AddTransaction = () => {
           />
         </div>
         <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.8 }} className="btn">Add transaction</motion.button>
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.8 }}
+          className="btn"
+        >
+          Add transaction
+        </motion.button>
       </form>
     </>
   );
